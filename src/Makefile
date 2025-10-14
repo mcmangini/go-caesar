@@ -1,6 +1,6 @@
 BINARY_NAME = caesar
 
-all: build test
+all: build
 
 build:
 	go build -o ${BINARY_NAME} caesar.go
