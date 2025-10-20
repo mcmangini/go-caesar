@@ -6,6 +6,7 @@ import (
 	"math"
 	"os"
 	"strconv"
+	"strings"
 )
 
 func usage() {
@@ -88,7 +89,7 @@ func scoreEnglishText(text string) float64 {
 		'z': 0.0002698054878940547,
 	}
 	var score float64
-	for _, c := range text {
+	for _, c := range strings.ToLower(text) {
 		score += freq[c]
 	}
 	return score / float64(len(text))
