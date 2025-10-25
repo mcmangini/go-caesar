@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"log"
 	"math"
@@ -167,7 +168,11 @@ func main() {
 
 	// Handle flags
 	if in == "" {
-		log.Fatal("No text given")
+		// If no text provided, read from stdin
+		reader := bufio.NewReader(os.Stdin)
+		in, _ = reader.ReadString('\n')
+		// Remove trailing newline
+		in = in[:len(in)-1]
 	}
 	if fromFile {
 		data, err := os.ReadFile(in)
