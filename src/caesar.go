@@ -169,10 +169,15 @@ func main() {
 	// Handle flags
 	if in == "" {
 		// If no text provided, read from stdin
-		reader := bufio.NewReader(os.Stdin)
-		in, _ = reader.ReadString('\n')
+		scanner := bufio.NewScanner(os.Stdin)
+		var lines string
+
+		// Read until Ctl-D is pressed
+		for scanner.Scan() {
+			lines += scanner.Text() + "\n"
+		}
 		// Remove trailing newline
-		in = in[:len(in)-1]
+		in = lines[:len(lines)-1]
 	}
 	if fromFile {
 		data, err := os.ReadFile(in)
